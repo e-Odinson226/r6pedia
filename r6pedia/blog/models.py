@@ -7,7 +7,7 @@ class Post(models.Model):
         ('p', "published"),
         ('d', "drafted"  ),
     ]
-    subject         = models.TextField(max_length=50)
+    subject         = models.CharField(max_length=50)
     slug            = models.SlugField(unique=True, max_length=40)
     content         = models.TextField(max_length=100000)
     img             = models.ImageField(upload_to="images")
