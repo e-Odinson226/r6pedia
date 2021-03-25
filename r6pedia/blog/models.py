@@ -15,3 +15,6 @@ class Post(models.Model):
     publish_date    = models.DateTimeField(default=timezone.now, verbose_name="زمان انتشار")
     update_date     = models.DateTimeField(auto_now=True)
     publish_status  = models.CharField(max_length=1, choices=publish_stats_choices, verbose_name="وضعیت")
+
+    def __str__(self):
+        return self.subject
