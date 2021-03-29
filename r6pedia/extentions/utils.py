@@ -1,6 +1,22 @@
 from . import jalali
 from django.utils import timezone
 
+def to_persian_numbers(numb_str):
+    index ={
+        "1":"۱",
+        "2":"۲",
+        "3":"۳",
+        "4":"۴",
+        "5":"۵",
+        "6":"۶",
+        "7":"۷",
+        "8":"۸",
+        "9":"۹",
+        "0":"۰",
+    }
+    for eng, per in index.items():
+        numb_str = numb_str.replace(eng,per)
+    return numb_str
 
 def jalaliazer(time):
 
@@ -17,4 +33,4 @@ def jalaliazer(time):
 
     output = "{},{},{} | {}:{}".format(jalali_date[0], jalali_date[1], jalali_date[2], time.hour, time.minute)
     
-    return output
+    return to_persian_numbers(output)
