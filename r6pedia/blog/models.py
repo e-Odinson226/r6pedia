@@ -16,5 +16,9 @@ class Post(models.Model):
     updated     = models.DateTimeField(auto_now=True)
     status      = models.CharField(max_length=1, choices=publish_stats_choices, verbose_name="وضعیت")
 
+    class Meta:
+        verbose_name = "پست"
+        verbose_name_plural = "پست"
+
     def __str__(self):
         return self.subject
