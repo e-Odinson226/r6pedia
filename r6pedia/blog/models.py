@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from extentions.utils import jalaliazer
 
 # Create your models here.
 class Post(models.Model):
@@ -22,3 +23,8 @@ class Post(models.Model):
 
     def __str__(self):
         return self.subject
+    
+    def j_published(self):
+        print(self.published)
+        return jalaliazer(self.published)
+    j_published.short_description = "زمان انتشار"

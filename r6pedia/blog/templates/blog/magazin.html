@@ -29,7 +29,7 @@
                             <div class="blog-post">
                                 <img src="{{ post.img.url }}" alt="" >
                                 <div class="text-content">
-                                    <span><a href="#">{{ author }}</a> / <a href="#">{{ post.published }}</a> </span>
+                                    <span><a href="#">{{ author }}</a> / <a href="#">{{ post.j_published }}</a> </span>
                                     <h2><a href="{% url 'blog:single-post' post.slug %}">{{ post.subject }} </a> </h2>
                                     <p>{{ post.content | truncatewords:35 }}</p>
                                     <div class="simple-btn">
