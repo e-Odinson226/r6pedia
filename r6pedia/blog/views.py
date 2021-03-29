@@ -12,7 +12,7 @@ def magazin(request):
     return render(request, "blog/magazin.html", context)
 
 def post_detail(request, slug):
-    post = get_object_or_404(Post, slug=slug)
+    post = get_object_or_404(Post, slug=slug, status='p')
     context = {
         "post" : post
     }
