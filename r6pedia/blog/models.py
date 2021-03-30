@@ -2,7 +2,24 @@ from django.db import models
 from django.utils import timezone
 from extentions.utils import jalaliazer
 
-# Create your models here.
+class Category(models.Model):
+    rank_choices = [
+        ('1', "first"),
+        ('2', "second"  ),
+        ('3', "third"  ),
+        ('4', "fourth"  ),
+    ]
+    title       = models.CharField(max_length=50, verbose_name="تیتر")
+    slug        = models.SlugField(unique=True, max_length=40)
+    rank        = models.CharField(max_length=1, choices=rank_choices, verbose_name="رده")
+
+    class Meta:
+        verbose_name = "دسته‌بندی"
+        verbose_name_plural = "دسته‌بندی ها"
+
+    def __str__(self):
+        return self.title
+
 class Post(models.Model):
     publish_stats_choices = [
         ('p', "published"),
