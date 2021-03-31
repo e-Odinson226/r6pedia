@@ -26,6 +26,7 @@ class Post(models.Model):
         ('d', "drafted"  ),
     ]
     subject     = models.CharField(max_length=50, verbose_name="تیتر")
+    category    = models.ManyToManyField(Category, verbose_name="دسته‌بندی")
     slug        = models.SlugField(unique=True, max_length=40)
     content     = models.TextField(max_length=100000, verbose_name="مطالب")
     img         = models.ImageField(upload_to="images", verbose_name="تصویر")
@@ -36,12 +37,15 @@ class Post(models.Model):
 
     class Meta:
         verbose_name = "پست"
-        verbose_name_plural = "پست"
+        verbose_name_plural = "پست‌ها"
 
     def __str__(self):
         return self.subject
     
     def j_published(self):
-        print(self.published)
         return jalaliazer(self.published)
     j_published.short_description = "زمان انتشار"
+
+    def str_categories(self):
+        return "، ".join([cat.title for cat in self.category.all()])
+    str_categories.short_description = "دسته‌بندی"

@@ -10,7 +10,7 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(Category, CategoryAdmin)
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ("subject", "content", "j_published", "status")
+    list_display = ("subject", "content", "j_published", "str_categories", "status")
     list_filter = ("status", "published")
     search_fields = ("subject", "content")
     prepopulated_fields = {"slug":("subject",)}
