@@ -1,8 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Post
 
+def about(request):
+    return render(request, "blog/about.html")
+#--------------------------------------------------------------------
+
 def homepage(request):
     return render(request, "blog/homepage.html")
+#--------------------------------------------------------------------
 
 def blog_main(request):
     posts= Post.objects.filter(status="p").order_by("-published")
@@ -10,6 +15,7 @@ def blog_main(request):
         "posts" : posts
     }
     return render(request, "blog/blog_main.html", context)
+#--------------------------------------------------------------------
 
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug, status='p')
@@ -17,3 +23,4 @@ def post_detail(request, slug):
         "post" : post
     }
     return render(request, "blog/single-post.html", context)
+#--------------------------------------------------------------------
