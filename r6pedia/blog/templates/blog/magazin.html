@@ -4,7 +4,7 @@
 
 <nav>
     <div class="logo">
-        <a href="{% static 'blog/magazin.html' %}">Mag<em>azin</em></a>
+        <a href="{% static 'blog/magazin.html' %}">IR6 <em> || Blog</em></a>
     </div>
     <div class="menu-icon">
     <span></span>
@@ -33,7 +33,7 @@
                                     <h2><a href="{% url 'blog:single-post' post.slug %}">{{ post.subject }} </a> </h2>
                                     <p>{{ post.content | truncatewords:35 }}</p>
                                     <div class="simple-btn">
-                                        <a href="#">ادامه</a>
+                                        <a href="{% url 'blog:single-post' post.slug %}">ادامه</a>
                                     </div>
                                 </div>
                             </div>
