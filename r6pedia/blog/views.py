@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Post
+from .models import Post, Category
 
 def about(request):
     return render(request, "blog/about.html")
@@ -10,8 +10,10 @@ def homepage(request):
 #--------------------------------------------------------------------
 
 def blog_main(request):
-    posts= Post.objects.filter(status="p").order_by("-published")
+    posts = Post.objects.filter(status="p").order_by("-published")
+    categories = Category.objects.filter(status="pub")
     context = {
+        "categories" : categories,
         "posts" : posts
     }
     return render(request, "blog/blog_main.html", context)
