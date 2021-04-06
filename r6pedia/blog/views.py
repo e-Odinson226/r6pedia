@@ -6,7 +6,11 @@ def about(request):
 #--------------------------------------------------------------------
 
 def homepage(request):
-    return render(request, "blog/homepage.html")
+    categories = Category.objects.filter(status="pub")
+    context = {
+        "categories" : categories,
+    }
+    return render(request, "blog/homepage.html", context)
 #--------------------------------------------------------------------
 
 def blog_main(request):

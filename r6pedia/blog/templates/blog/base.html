@@ -101,17 +101,13 @@
                   <li>
                       <a href="{% url 'blog:blog' %}">IR6 || Blog </a>
                   </li>
-                  <li>
-                      <a href="#">Categories</a>
-                  </li>
+                  {% for cat in categories %}
+                    <li>
+                      <a href="#">{{ cat }}</a>
+                    </li>
+                  {% endfor %}
                   <li>
                       <a href="{% url 'about' %}">About Us</a>
-                  </li>
-                  <li>
-                      <a href="blog.html">Blog Entries</a>
-                  </li>
-                  <li>
-                      <a href="single-post.html">Single Post</a>
                   </li>
               </ul>
               <p>We create awesome templates for you</p>
