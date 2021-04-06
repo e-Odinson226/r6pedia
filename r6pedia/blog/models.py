@@ -9,9 +9,15 @@ class Category(models.Model):
         ('3', "third"  ),
         ('4', "fourth"  ),
     ]
+    cat_status = [
+        ('pub', "Public"),
+        ('hid', "Hidden"),
+        ('drf', "Drafted"),
+    ]
     title       = models.CharField(max_length=50, verbose_name="تیتر")
     slug        = models.SlugField(unique=True, max_length=40)
     rank        = models.CharField(max_length=1, choices=rank_choices, verbose_name="رده")
+    status      = models.CharField(max_length=3, choices= cat_status, default="pub")
 
     class Meta:
         verbose_name = "دسته‌بندی"
