@@ -32,6 +32,11 @@
                                     <span><a href="#">{{ author }}</a> / <a href="#">{{ post.j_published }}</a> </span>
                                     <h2><a href="{% url 'blog:single-post' post.slug %}">{{ post.subject }} </a> </h2>
                                     <p>{{ post.content | truncatewords:35 }}</p>
+                                    <div>
+                                        {% for cat in post.category.all %}
+                                            <a href="#">#{{ cat }} | </a>
+                                        {% endfor %}
+                                    </div>
                                     <div class="simple-btn">
                                         <a href="{% url 'blog:single-post' post.slug %}">ادامه</a>
                                     </div>

@@ -14,7 +14,7 @@ def homepage(request):
 #--------------------------------------------------------------------
 
 def blog_main(request):
-    posts = Post.objects.filter(status="p").order_by("-published")
+    posts = Post.objects.filter(status="p")
     categories = Category.objects.filter(status="pub")
     context = {
         "categories" : categories,

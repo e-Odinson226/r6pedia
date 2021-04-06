@@ -22,6 +22,7 @@ class Category(models.Model):
     class Meta:
         verbose_name = "دسته‌بندی"
         verbose_name_plural = "دسته‌بندی ها"
+        ordering = ["status"]
 
     def __str__(self):
         return self.title
@@ -44,6 +45,7 @@ class Post(models.Model):
     class Meta:
         verbose_name = "پست"
         verbose_name_plural = "پست‌ها"
+        ordering = ["-published"]
 
     def __str__(self):
         return self.subject
