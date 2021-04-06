@@ -1,0 +1,20 @@
+body{
+    direction: rtl;
+    text-align: right;
+    font-family: Gandom;
+}
+nav .logo {
+    float: right;
+    margin-right: 30px;
+    margin-left: auto;
+}
+.menu-icon {
+    float: left;
+    margin-left: 30px;
+    margin-right: auto;
+}
+
+.simple-btn {
+    text-align: left;
+  }
+  
