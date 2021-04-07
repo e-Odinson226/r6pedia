@@ -25,7 +25,7 @@
             <div class="blog-posts">
                 <div class="row">
                     <div class="col-md-12">
-                        {% for post in category.posts %}
+                        {% for post in category.posts.all %}
                             <div class="blog-post">
                                 <img src="{{ post.img.url }}" alt="" >
                                 <div class="text-content">
@@ -33,7 +33,7 @@
                                     <h2><a href="{% url 'blog:single-post' post.slug %}">{{ post.subject }} </a> </h2>
                                     <p>{{ post.content | truncatewords:35 }}</p>
                                     <div>
-                                        {% for cat in post.category.all %}
+                                        {% for cat in post.pub_categories.all %}
                                             <a href="#">#{{ cat }} | </a>
                                         {% endfor %}
                                     </div>

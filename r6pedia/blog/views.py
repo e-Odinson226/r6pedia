@@ -28,7 +28,7 @@ def post_detail(request, slug):
 def category(request, slug):
     categories = get_object_or_404(Category, slug=slug, status="pub")
     context = {
-        "categories" : categories
+        "category" : categories
     }
     return render(request, "blog/category.html", context)
 #--------------------------------------------------------------------
