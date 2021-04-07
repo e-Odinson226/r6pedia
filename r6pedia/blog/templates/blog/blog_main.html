@@ -33,7 +33,7 @@
                                     <h2><a href="{% url 'blog:single-post' post.slug %}">{{ post.subject }} </a> </h2>
                                     <p>{{ post.content | truncatewords:35 }}</p>
                                     <div>
-                                        {% for cat in post.category.all %}
+                                        {% for cat in post.pub_categories.all %}
                                             <a href="{% url 'blog:category' cat.slug  %}">#{{ cat }} | </a>
                                         {% endfor %}
                                     </div>

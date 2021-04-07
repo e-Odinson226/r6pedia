@@ -57,3 +57,6 @@ class Post(models.Model):
     def str_categories(self):
         return "، ".join([cat.title for cat in self.category.all()])
     str_categories.short_description = "دسته‌بندی"
+
+    def pub_categories(self):
+        return self.category.filter(status="pub")
