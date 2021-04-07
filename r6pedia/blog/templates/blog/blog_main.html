@@ -34,7 +34,7 @@
                                     <p>{{ post.content | truncatewords:35 }}</p>
                                     <div>
                                         {% for cat in post.category.all %}
-                                            <a href="#">#{{ cat }} | </a>
+                                            <a href="{% url 'blog:category' cat.slug  %}">#{{ cat }} | </a>
                                         {% endfor %}
                                     </div>
                                     <div class="simple-btn">
