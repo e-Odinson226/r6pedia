@@ -33,7 +33,7 @@ class Post(models.Model):
         ('d', "drafted"  ),
     ]
     subject     = models.CharField(max_length=50, verbose_name="تیتر")
-    category    = models.ManyToManyField(Category, verbose_name="دسته‌بندی", related_name="articles")
+    category    = models.ManyToManyField(Category, verbose_name="دسته‌بندی", related_name="posts")
     slug        = models.SlugField(unique=True, max_length=40)
     content     = models.TextField(max_length=100000, verbose_name="مطالب")
     img         = models.ImageField(upload_to="images", verbose_name="تصویر")
