@@ -10,4 +10,4 @@ urlpatterns = [
     path('blog/', blog_main, name="blog"),
     path('blog/<slug:slug>', post_detail, name="single-post"),
     path('category/<slug:slug>', category, name="category"),
-cat
+]
