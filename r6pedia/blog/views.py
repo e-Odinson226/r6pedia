@@ -6,18 +6,12 @@ def about(request):
 #--------------------------------------------------------------------
 
 def homepage(request):
-    categories = Category.objects.filter(status="pub")
-    context = {
-        "categories" : categories,
-    }
-    return render(request, "blog/homepage.html", context)
+    return render(request, "blog/homepage.html")
 #--------------------------------------------------------------------
 
 def blog_main(request):
     posts = Post.objects.filter(status="p")
-    categories = Category.objects.filter(status="pub")
     context = {
-        "categories" : categories,
         "posts" : posts
     }
     return render(request, "blog/blog_main.html", context)
@@ -29,4 +23,12 @@ def post_detail(request, slug):
         "post" : post
     }
     return render(request, "blog/single-post.html", context)
+#--------------------------------------------------------------------
+
+def category(request, slug):
+    categories = get_object_or_404(Category, slug=slug, status="pub")
+    context = {
+        "categories" : categories
+    }
+    return render(request, "blog/category.html", context)
 #--------------------------------------------------------------------
