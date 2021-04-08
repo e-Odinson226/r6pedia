@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Post, Category
+from django.core.paginator import Paginator
 
 def about(request):
     return render(request, "blog/about.html")
@@ -11,8 +12,11 @@ def homepage(request):
 
 def blog_main(request):
     posts = Post.objects.published()
+    paginator = Paginator(posts, 3)
+    page = request.GET.get("page")
+    page_posts = paginator.get_page(page)
     context = {
-        "posts" : posts
+        "posts" : page_posts
     }
     return render(request, "blog/blog_main.html", context)
 #--------------------------------------------------------------------
