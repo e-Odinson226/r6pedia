@@ -32,15 +32,20 @@ def post_detail(request, slug):
 
 def category(request, slug):
     categories = get_object_or_404(Category, slug=slug, status="pub")
-    
+    #posts = categories.posts.published()
+
     try:
-        posts = categories.posts.published
+        posts = categories.posts.published()
     except Exception:
         raise Http404
 
+    paginator = Paginator(posts, 3)
+    page = request.GET.get("page")
+    page_posts = paginator.get_page(page)
+
     context = {
         "category" : categories,
-        "posts" : posts,
+        "posts" : page_posts,
     }
     return render(request, "blog/category.html", context)
 #--------------------------------------------------------------------

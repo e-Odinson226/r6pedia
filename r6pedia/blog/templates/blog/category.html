@@ -46,10 +46,18 @@
                     </div>
                     <div class="col-md-12">
                         <ul class="page-number">
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">></a></li>
+                            {% if posts.has_previous %}
+                                <li ><a href="{% url 'blog:category' category.slug %}?page=1">First</a></li>
+                                <li ><a href="{% url 'blog:category' category.slug %}?page={{ posts.previous_page_number }}">Previous</a></li>
+                            {% endif %}
+
+                            <li class="active"><a href="#">{{ posts.number }}</a></li>
+
+                            {% if posts.has_next %}
+                                <li ><a href="{% url 'blog:category' category.slug %}?page={{ posts.next_page_number }}">Next</a></li>
+                                <li ><a href="{% url 'blog:category' category.slug %}?page={{ posts.paginator.num_pages }}">Last</a></li>
+
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
