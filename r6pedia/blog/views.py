@@ -10,7 +10,7 @@ def homepage(request):
 #--------------------------------------------------------------------
 
 def blog_main(request):
-    posts = Post.objects.filter(status="p")
+    posts = Post.objects.published()
     context = {
         "posts" : posts
     }

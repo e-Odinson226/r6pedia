@@ -2,6 +2,13 @@ from django.db import models
 from django.utils import timezone
 from extentions.utils import jalaliazer
 
+#Managers
+class PostManager(models.Manager):
+    def published(self):
+        return self.filter(status="p")
+
+
+#Models
 class Category(models.Model):
     rank_choices = [
         ('1', "first"),
@@ -60,3 +67,5 @@ class Post(models.Model):
 
     def pub_categories(self):
         return self.category.filter(status="pub")
+
+    objects = PostManager()
