@@ -61,11 +61,12 @@ class Post(models.Model):
         return jalaliazer(self.published)
     j_published.short_description = "زمان انتشار"
 
-    def str_categories(self):
-        return "، ".join([cat.title for cat in self.category.all()])
-    str_categories.short_description = "دسته‌بندی"
-
     def pub_categories(self):
         return self.category.filter(status="pub")
+
+    def str_categories(self):
+        return "، ".join([cat.title for cat in self.pub_categories()])
+    str_categories.short_description = "دسته‌بندی"
+
 
     objects = PostManager()
