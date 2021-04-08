@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from .models import Post, Category
 from django.core.paginator import Paginator
@@ -31,8 +32,15 @@ def post_detail(request, slug):
 
 def category(request, slug):
     categories = get_object_or_404(Category, slug=slug, status="pub")
+    
+    try:
+        posts = categories.posts.published
+    except Exception:
+        raise Http404
+
     context = {
-        "category" : categories
+        "category" : categories,
+        "posts" : posts,
     }
     return render(request, "blog/category.html", context)
 #--------------------------------------------------------------------
