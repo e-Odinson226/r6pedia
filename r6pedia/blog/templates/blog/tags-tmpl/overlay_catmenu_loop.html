@@ -1,0 +1,10 @@
+<li>
+    {% for subc in cat.sub_cat.all %}
+    <li>
+      <a href="{% url 'blog:category' subc.slug %}">{{ subc }}</a>
+      {% if subc.sub_cat.all %}
+        {% include 'blog/tags-tmpl/overlay_catmenu_loop.html' %}
+      {% endif %}
+    </li>            
+    {% endfor %}
+  </li>

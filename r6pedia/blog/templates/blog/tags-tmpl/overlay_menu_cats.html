@@ -3,11 +3,7 @@
     <li>
       <a href="{% url 'blog:category' cat.slug %}">{{ cat }}</a>
       {% if cat.sub_cat.all %}
-        {% for sub_cat in cat.sub_cat.all %}
-        <li>
-          <a href="{% url 'blog:category' sub_cat.slug %}">{{ sub_cat }}</a>
-        </li>
-        {% endfor %}
+        {% include 'blog/tags-tmpl/overlay_catmenu_loop.html' %}
       {% endif %}
     </li>
   {% endif %}
