@@ -1,5 +1,14 @@
 {% for cat in categories %}
-<li>
-  <a href="{% url 'blog:category' cat.slug %}">{{ cat }}</a>
-</li>
+  {% if cat.parent_cat == None %}
+    <li>
+      <a href="{% url 'blog:category' cat.slug %}">{{ cat }}</a>
+      {% if cat.sub_cat.all %}
+        {% for sub_cat in cat.sub_cat.all %}
+        <li>
+          <a href="{% url 'blog:category' sub_cat.slug %}">{{ sub_cat }}</a>
+        </li>
+        {% endfor %}
+      {% endif %}
+    </li>
+  {% endif %}
 {% endfor %}
