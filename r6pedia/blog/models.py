@@ -22,6 +22,7 @@ class Category(models.Model):
         ('drf', "Drafted"),
     ]
     title       = models.CharField(max_length=50, verbose_name="تیتر")
+    parent_cat  = models.ForeignKey("Category", on_delete=models.SET_NULL, null=True, blank=True, related_name="categories", verbose_name="سردسته")
     slug        = models.SlugField(unique=True, max_length=40)
     rank        = models.CharField(max_length=1, choices=rank_choices, verbose_name="رده")
     status      = models.CharField(max_length=3, choices= cat_status, default="pub")
