@@ -37,6 +37,8 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
+    
+    objects = CategoryManager()
 
 class Post(models.Model):
     publish_stats_choices = [
