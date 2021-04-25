@@ -1,8 +1,8 @@
-{% for cat in categories %}
-  {% if cat.parent_cat == None %}
+{% for subc in categories %}
+  {% if subc.parent_cat == None %}
     <li>
-      <a href="{% url 'blog:category' cat.slug %}">{{ cat }}</a>
-      {% if cat.sub_cat.all %}
+      <a href="{% url 'blog:category' subc.slug %}">{{ subc }}</a>
+      {% if subc.sub_cat.all %}
         {% include 'blog/tags-tmpl/overlay_catmenu_loop.html' %}
       {% endif %}
     </li>
