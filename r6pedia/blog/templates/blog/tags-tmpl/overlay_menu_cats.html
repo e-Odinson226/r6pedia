@@ -2,7 +2,7 @@
   {% if subc.parent_cat == None %}
     <li>
       <a href="{% url 'blog:category' subc.slug %}">{{ subc }}</a>
-      {% if subc.sub_cat.all %}
+      {% if subc.sub_cat.active %}
         {% include 'blog/tags-tmpl/overlay_catmenu_loop.html' %}
       {% endif %}
     </li>

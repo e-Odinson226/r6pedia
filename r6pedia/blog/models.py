@@ -7,6 +7,9 @@ class PostManager(models.Manager):
     def published(self):
         return self.filter(status="p")
 
+class CategoryManager(models.Manager):
+    def active(self):
+        return self.filter(status='pub')
 
 #Models
 class Category(models.Model):
