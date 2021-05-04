@@ -17,7 +17,13 @@ def homepage(request):
     return render(request, "blog/homepage.html") """
 #--------------------------------------------------------------------
 
-def blog_main(request):
+class Blog(ListView):
+    queryset = Post.objects.published()
+    paginate_by = 3
+    template_name = "blog/blog_main.html"
+    context_object_name = "posts"
+
+""" def blog_main(request):
     posts = Post.objects.published()
     paginator = Paginator(posts, 3)
     page = request.GET.get("page")
@@ -25,7 +31,7 @@ def blog_main(request):
     context = {
         "posts" : page_posts
     }
-    return render(request, "blog/blog_main.html", context)
+    return render(request, "blog/blog_main.html", context) """
 #--------------------------------------------------------------------
 
 def post_detail(request, slug):
