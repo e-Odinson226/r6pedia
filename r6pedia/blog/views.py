@@ -52,17 +52,17 @@ def post_detail(request, slug):
 class CategoryList(ListView):
     paginate_by = 3
     template_name = "blog/category.html"
-    context_object_name = "categories"
     
     def get_queryset(self):
         slug = self.kwargs.get("slug")
-        global categories
-        categories = get_object_or_404(Category.objects.active(), slug=slug)
-        return categories.posts.published()
+        category = get_object_or_404(Category.objects.active(), slug=slug)
+        return category.posts.published()
     
     def get_context_data(self, **kwargs):
+        slug = self.kwargs.get("slug")
+        category = get_object_or_404(Category.objects.active(), slug=slug)
         context = super().get_context_data(**kwargs)
-        context['category'] =  categories
+        context['category'] =  category
         return context
 
 
