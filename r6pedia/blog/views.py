@@ -2,13 +2,19 @@ from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from .models import Post, Category
 from django.core.paginator import Paginator
+from django.views.generic import ListView
 
 def about(request):
     return render(request, "blog/about.html")
 #--------------------------------------------------------------------
 
+class Homepage(ListView):
+    template = "blog/homepage.html"
+    def get(self, request, *args, **kwargs):
+        return render(request, "blog/homepage.html")
+""" 
 def homepage(request):
-    return render(request, "blog/homepage.html")
+    return render(request, "blog/homepage.html") """
 #--------------------------------------------------------------------
 
 def blog_main(request):
