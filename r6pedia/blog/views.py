@@ -2,7 +2,7 @@ from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from .models import Post, Category
 from django.core.paginator import Paginator
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 def about(request):
     return render(request, "blog/about.html")
@@ -34,12 +34,19 @@ class Blog(ListView):
     return render(request, "blog/blog_main.html", context) """
 #--------------------------------------------------------------------
 
+class PostDetail(DetailView):
+    template_name = "blog/single-post.html"
+    context_object_name = "post"
+    def get_object(self):
+        slug = self.kwargs.get("slug")
+        return get_object_or_404(Post, slug=slug, status='p')
+"""         
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug, status='p')
     context = {
         "post" : post
     }
-    return render(request, "blog/single-post.html", context)
+    return render(request, "blog/single-post.html", context) """
 #--------------------------------------------------------------------
 
 def category(request, slug):
