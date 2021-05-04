@@ -50,14 +50,14 @@
 
                                 {% if page_obj.has_previous %}
                                     <li ><a href="{% url 'blog:blog' %}?page=1">First</a></li>
-                                    <li ><a href="{% url 'blog:blog' %}?page={{ posts.previous_page_number }}">Previous</a></li>
+                                    <li ><a href="{% url 'blog:blog' page_obj.previous_page_number  %}">Pre</a></li>
                                 {% endif %}
 
                                     <li class="active"><a href="#">{{ page_obj.number }}</a></li>
 
                                 {% if page_obj.has_next %}
-                                    <li ><a href="{% url 'blog:blog' %}?page={{ posts.next_page_number }}">Next</a></li>
-                                    <li ><a href="{% url 'blog:blog' %}?page={{ posts.paginator.num_pages }}">Last</a></li>
+                                    <li ><a href="{% url 'blog:blog' page_obj.next_page_number  %}">Next</a></li>
+                                    <li ><a href="{% url 'blog:blog' page_obj.paginator.num_pages %}">Last</a></li>
 
                                 {% endif %}
 
