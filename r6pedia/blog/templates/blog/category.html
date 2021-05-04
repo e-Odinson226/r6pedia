@@ -25,7 +25,7 @@
             <div class="blog-posts">
                 <div class="row">
                     <div class="col-md-12">
-                        {% for post in posts %}
+                        {% for post in categories %}
                             <div class="blog-post">
                                 <img src="{{ post.img.url }}" alt="" >
                                 <div class="text-content">
@@ -44,22 +44,25 @@
                             </div>
                         {% endfor %}
                     </div>
-                    <div class="col-md-12">
-                        <ul class="page-number">
-                            {% if posts.has_previous %}
-                                <li ><a href="{% url 'blog:category' category.slug %}?page=1">First</a></li>
-                                <li ><a href="{% url 'blog:category' category.slug %}?page={{ posts.previous_page_number }}">Previous</a></li>
-                            {% endif %}
+                    {% if is_paginated %}
+                        <div class="col-md-12">
+                            <ul class="page-number">
+                                {% if page_obj.has_previous %}
+                                    <li ><a href="{% url 'blog:category' category.slug %}?page=1">First</a></li>
+                                    <li ><a href="{% url 'blog:category' category.slug %}?page={{ posts.previous_page_number }}">Previous</a></li>
+                                {% endif %}
 
-                            <li class="active"><a href="#">{{ posts.number }}</a></li>
+                                <li class="active"><a href="#">{{ page_obj.number }}</a></li>
 
-                            {% if posts.has_next %}
-                                <li ><a href="{% url 'blog:category' category.slug %}?page={{ posts.next_page_number }}">Next</a></li>
-                                <li ><a href="{% url 'blog:category' category.slug %}?page={{ posts.paginator.num_pages }}">Last</a></li>
+                                {% if page_obj.has_next %}
+                                    <li ><a href="{% url 'blog:category' category.slug %}?page={{ posts.next_page_number }}">Next</a></li>
+                                    <li ><a href="{% url 'blog:category' category.slug %}?page={{ posts.paginator.num_pages }}">Last</a></li>
 
-                            {% endif %}
-                        </ul>
-                    </div>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    
                 </div>
             </div>
         </div>

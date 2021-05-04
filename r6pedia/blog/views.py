@@ -49,7 +49,24 @@ def post_detail(request, slug):
     return render(request, "blog/single-post.html", context) """
 #--------------------------------------------------------------------
 
-def category(request, slug):
+class CategoryList(ListView):
+    paginate_by = 3
+    template_name = "blog/category.html"
+    context_object_name = "categories"
+    
+    def get_queryset(self):
+        slug = self.kwargs.get("slug")
+        global categories
+        categories = get_object_or_404(Category.objects.active(), slug=slug)
+        return categories.posts.published()
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] =  categories
+        return context
+
+
+""" def category(request, slug):
     categories = get_object_or_404(Category, slug=slug, status="pub")
     #posts = categories.posts.published()
 
@@ -66,5 +83,5 @@ def category(request, slug):
         "category" : categories,
         "posts" : page_posts,
     }
-    return render(request, "blog/category.html", context)
+    return render(request, "blog/category.html", context) """
 #--------------------------------------------------------------------
